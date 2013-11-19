@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.JFrame;
+
+public class MathPlus2 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new TFrame().lanuchFrame();
+	}
+
+}
+class TFrame extends JFrame {
+	public void lanuchFrame() {
+		TextField num1 = new TextField(10);
+		TextField num2 = new TextField(10);
+		TextField num3 = new TextField(15);
+		Label plus = new Label("+");
+		Button Equal = new Button("=");
+		Equal.addActionListener(new MyMonitor(this));//在此设置监听
+		setLayout(new FlowLayout());
+		add(num1);
+		add(plus);
+		add(num2);
+		add(Equal);
+		add(num3);
+		pack();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		
+	}
+}
+//自己定义监听器 ，要实现ActionListener接口
+	
+ 
+class MyMonitor implements ActionListener {
+   /*TextField num1,num2,num3;
+	public Monitor(TextField num1,TextField num2,TextField num3) {
+		this.num1 = num1;
+		this.num2 = num2;
+		this.num3 = num3;
+		
+	}
+	*/
+	TFrame tf = null;
+ public MyMonitor(TFrame tf) {
+		this.tf = tf;
+	}
+  public void actionPerformed(ActionEvent e){
+		int n1 = Integer.parseInt(tf.num1.getText());//将取到的字符串转换成整数
+		int n2 = Integer.parseInt(tf.num2.getText());
+				tf.num3.setText("" + (n1+n2));
+	}
+   
+}
